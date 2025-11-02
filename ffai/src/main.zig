@@ -1,5 +1,6 @@
 const std = @import("std");
-const groq = @import("groq/handler.zig");
+// const groq = @import("groq/handler.zig");
+const httptest = @import("httptest/httptest.zig");
 
 fn printContent(content: []const u8) void {
     std.debug.print("[DEBUG] printContent: Callback invoked with content: '{s}'\n", .{content});
@@ -8,24 +9,25 @@ fn printContent(content: []const u8) void {
 
 pub fn main() !void {
     std.debug.print("[DEBUG] main: Program started\n", .{});
-    
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+
+    // var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    // defer _ = gpa.deinit();
+    // const allocator = gpa.allocator();
 
     std.debug.print("[DEBUG] main: Allocator created\n", .{});
     std.debug.print("Making Groq API call...\n\n", .{});
 
     // Make a simple chat completion request
     std.debug.print("[DEBUG] main: Calling groq.chat\n", .{});
-    groq.chat(
-        allocator,
-        "Hello! Tell me a short joke.",
-        &printContent,
-    ) catch |err| {
-        std.debug.print("[ERROR] main: groq.chat failed with error: {any}\n", .{err});
-        return err;
-    };
+    try httptest.run();
+    // groq.chat(
+    //     allocator,
+    //     "Hello! Tell me a short joke.",
+    //     &printContent,
+    // ) catch |err| {
+    //     std.debug.print("[ERROR] main: groq.chat failed with error: {any}\n", .{err});
+    //     return err;
+    // };
 
     std.debug.print("\n\n[DEBUG] main: API call completed!\n", .{});
 }
