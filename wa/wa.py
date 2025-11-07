@@ -34,8 +34,8 @@ class Deps:
 
 
 weather_agent = Agent(
-    'openrouter:z-ai/glm-4.6',
-    # 'ollama:qwen3:8b',
+    # 'openrouter:z-ai/glm-4.6',
+    'ollama:qwen3:8b',
     # 'Be concise, reply with one sentence.' is enough for some models (like openai) to use
     # the below tools appropriately, but others like anthropic and gemini require a bit more direction.
     instructions='Create a nice engaging and short story around the weather, the story should be really catchy to read. \n\nfor example: "Carry an umbrella because it\'s gonna rain like hell and the weather? it is going to be chilly! Not the perfect combination, but God does play die sometimes"',
@@ -55,7 +55,7 @@ async def get_lat_lng(ctx: RunContext[Deps], location_description: str) -> LatLn
 
     Args:
         ctx: The context.
-        location_description: A description of a location.
+        location_description: A description of a location as location, country
     """
     # NOTE: the response here will be random, and is not related to the location description.
     r = await ctx.deps.client.get(
@@ -99,7 +99,7 @@ async def main():
         logfire.instrument_httpx(client, capture_all=True)
         deps = Deps(client=client)
         result = await weather_agent.run(
-            'What is the weather like in London and in Wiltshire?', deps=deps
+            'What is the weather like in Bongaigaon?', deps=deps
         )
         print('Response:', result.output)
 

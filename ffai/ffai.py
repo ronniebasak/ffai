@@ -169,8 +169,8 @@ def build_plan_with_agent(prompt: str, model: str = "openrouter:moonshotai/kimi-
             "The commands must be safe POSIX argv lists for ffmpeg (do not inject shell).\n"
         )
         agent = Agent(model, system_prompt=system)
-        run = agent.run_sync(prompt, result_type=Plan, message_history=None)
-        return run.data
+        run = agent.run_sync(prompt, message_history=None)
+        return run.output
 
     # fallback simple planner: try to interpret instructions heuristically
     # Support patterns like "convert X to mp4" or "compress X by 10x"
