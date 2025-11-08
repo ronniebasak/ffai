@@ -1,5 +1,5 @@
 [project]
-name = "ffai"
+name = "ffsimple"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -10,6 +10,15 @@ dependencies = [
     "opentelemetry-instrumentation-sqlite3>=0.59b0",
     "pydantic>=2.12.4",
     "pydantic-ai>=1.11.1",
+    "pytest>=8.4.2",
     "python-dotenv>=1.2.1",
     "rich>=14.2.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ffsimple",
+]
+
+[tool.uv.sources]
+ffsimple = { workspace = true }

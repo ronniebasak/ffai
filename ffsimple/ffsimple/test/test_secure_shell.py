@@ -1,7 +1,10 @@
 """Test script for secure_shell module."""
 
 import sys
-sys.path.insert(0, 'ffsimple')
+from pathlib import Path
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from tools.secure_shell import execute_shell, ShellResponse
 
