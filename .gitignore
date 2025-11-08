@@ -7,6 +7,8 @@ zig-out/
 *.mkv
 *.m4v
 
+*.env
+
 # Python gitignore entries
 # Byte-compiled / optimized / DLL files
 __pycache__/
