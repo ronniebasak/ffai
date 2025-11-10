@@ -66,7 +66,7 @@ class ConfigManager:
             try:
                  with open(CONFIG_FILE, "r") as f:
                     self.config = json.load(f)
-                return self.config
+                    return self.config
             except (json.JSONDecodeError, IOError) as e:
                 console.print(f"[bold red]Error loading config: {e}[/bold red]")
                 console.print("[yellow]Starting fresh configuration...[/yellow]")
